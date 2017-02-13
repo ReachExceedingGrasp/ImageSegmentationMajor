@@ -1,0 +1,69 @@
+data.py
+
+We First created a filefor preprocessing he imagea in which we crop, resize them.
+
+Load images in the form study x slices x width x height.
+    Each image contains 30 time series frames so that it is ready for the convolutional network.
+
+    :param from_dir: directory with images (train or validate)
+    :param verbose: if true then print data
+
+The studies are mapped to their respective target images.
+
+We also load the training set data and save it to .npy file for ease 
+of future use.
+
+ Loads the validation data set including X and study ids and saves it to .npy file.
+
+
+train.py
+
+    Load training data from .npy files.
+
+    Split data into training and testing.
+
+    :param X: X
+    :param y: y
+    :param split_ratio: split ratio for train and test data
+
+    Training systole and diastole models.
+
+    calculated sigmas for predicted data, actually loss function values (RMSE)
+
+CDF for train and test data (actually a step function)
+
+CDF for predicted data
+
+evaluate CRPS on training data and test data
+
+save weights so they can be loaded later
+
+
+Utils.py
+
+Calculation of CRPS.
+
+    :param true: true values (labels)
+    :param pred: predicted values
+
+
+Utility function for creating CDF from real number and sigma (uncertainty measure).
+
+    :param y: array of real values
+    :param sigma: uncertainty measure. The higher sigma, the more imprecise the prediction is, and vice versa.
+    Default value for sigma is 1e-10 to produce step function if needed.
+
+
+    Pre-process images that are fed to neural network.
+
+model.py
+
+    RMSE loss function
+
+Custom activation for online sample-wise center and std. normalization
+
+Acutal neural network defined.
+Optimizer adam used.
+loss function of root mean squared error used.
+    :param X: X
+
